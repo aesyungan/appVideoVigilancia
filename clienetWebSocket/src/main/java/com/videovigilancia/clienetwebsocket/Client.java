@@ -5,6 +5,7 @@
  */
 package com.videovigilancia.clienetwebsocket;
 
+import com.github.sarxos.webcam.Webcam;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferByte;
 import java.awt.image.WritableRaster;
@@ -68,7 +69,17 @@ public class Client {
             //byte[]  bytes=los bytes de la imagen
             //mWs.send(bytes); 
             //enviar imagenes de la pc 
-            sendImage("E://img//assasing.png", mWs);
+            //sendImage("E://img//assasing.png", mWs);
+            Webcam webcam = Webcam.getDefault();
+            webcam.open();
+            boolean ejecutar = true;
+
+            while (ejecutar) {
+                sendImage(webcam, mWs);
+                Thread.sleep(50);
+            }
+
+            //sendImage(webcam, mWs);
         } catch (Exception e) {
             System.out.println("Error->" + e.getMessage());
         } finally {
@@ -92,6 +103,18 @@ public class Client {
             System.out.println("Error al envia el archivo");
         } finally {
             //mWs.close();s
+        }
+
+    }
+
+    static public void sendImage(Webcam webcam, WebSocketClient mWs) {
+        try {
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            ImageIO.write(webcam.getImage(), "png", baos);
+            byte[] res = baos.toByteArray();
+            mWs.send(res);
+        } catch (Exception e) {
+            System.out.println("Error AL enviar una imagen->" + e.getMessage());
         }
 
     }

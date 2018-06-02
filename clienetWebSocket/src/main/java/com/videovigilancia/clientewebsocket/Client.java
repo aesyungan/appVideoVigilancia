@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.videovigilancia.clienetwebsocket;
+package com.videovigilancia.clientewebsocket;
 
 import com.github.sarxos.webcam.Webcam;
 import java.awt.image.BufferedImage;

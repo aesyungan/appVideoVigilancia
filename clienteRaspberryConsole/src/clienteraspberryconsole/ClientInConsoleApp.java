@@ -89,13 +89,13 @@ public class ClientInConsoleApp {
             //enviar imagenes de la pc 
             //sendImage("E://img//assasing.png", mWs);
             Webcam webcam = Webcam.getDefault();
-            webcam.setViewSize(new Dimension(176, 144));
+            webcam.setViewSize(new Dimension(88, 72));
             webcam.open();
             boolean ejecutar = true;
 
             while (ejecutar) {
                 sendImage(webcam, mWs);
-                Thread.sleep(50);
+                Thread.sleep(30);
             }
 
             //sendImage(webcam, mWs);

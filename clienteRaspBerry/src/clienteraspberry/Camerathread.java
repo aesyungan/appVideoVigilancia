@@ -36,7 +36,7 @@ public class Camerathread implements Runnable {
         try {
             while (true) {
                 sendImage(webcam, mWs);
-                Thread.sleep(50);
+                Thread.sleep(30);
             }
 
         } catch (Exception e) {

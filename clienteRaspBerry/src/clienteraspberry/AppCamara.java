@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package appcameraclientenomaven;
+package clienteraspberry;
 
 import com.github.sarxos.webcam.Webcam;
 import com.github.sarxos.webcam.ds.fswebcam.FsWebcamDriver;
@@ -26,9 +26,9 @@ public class AppCamara extends javax.swing.JFrame {
 
     static {
         try {
-            //System.setProperty("org.slf4j.simpleLogger.defaultLogLevel", "info");
-            //System.setProperty("org.slf4j.simpleLogger.log.com.github.sarxos.webcam.ds.v4l4j", "trace");
-            //  Webcam.setDriver(new V4l4jDriver());
+            System.setProperty("org.slf4j.simpleLogger.defaultLogLevel", "info");
+            System.setProperty("org.slf4j.simpleLogger.log.com.github.sarxos.webcam.ds.v4l4j", "trace");
+            Webcam.setDriver(new V4l4jDriver());
         } catch (Exception e) {
             System.out.println("error ->" + e.getMessage());
         }
@@ -228,7 +228,7 @@ public class AppCamara extends javax.swing.JFrame {
         btnIniciar.setEnabled(true);
         btnFinalizar.setEnabled(false);
         isConnectSocket = false;
-        thread.stop();
+        thread.interrupt();
         thread = null;
 
     }//GEN-LAST:event_btnFinalizarActionPerformed
@@ -262,6 +262,8 @@ public class AppCamara extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(AppCamara.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 

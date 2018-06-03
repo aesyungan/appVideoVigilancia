@@ -103,7 +103,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txtServerSocket">
       <Properties>
-        <Property name="text" type="java.lang.String" value="ws://localhost:8080/videovigilancia/livevideo"/>
+        <Property name="text" type="java.lang.String" value="ws://192.168.43.105:8080/videovigilancia/livevideo"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtServerSocketActionPerformed"/>

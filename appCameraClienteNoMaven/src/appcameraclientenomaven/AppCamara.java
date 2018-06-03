@@ -120,7 +120,7 @@ public class AppCamara extends javax.swing.JFrame {
 
         jLabel1.setText("socket server:");
 
-        txtServerSocket.setText("ws://localhost:8080/videovigilancia/livevideo");
+        txtServerSocket.setText("ws://192.168.43.105:8080/videovigilancia/livevideo");
         txtServerSocket.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtServerSocketActionPerformed(evt);
@@ -188,7 +188,7 @@ public class AppCamara extends javax.swing.JFrame {
             if (isConnectSocket) {
 
                 webcam = Webcam.getDefault();
-                webcam.setViewSize(new Dimension(320, 240));
+                webcam.setViewSize(new Dimension(160, 120));
                 webcam.open();
                 activo = true;
                 btnIniciar.setEnabled(false);

@@ -18,14 +18,15 @@ import org.java_websocket.client.WebSocketClient;
  */
 public class Camerathread implements Runnable {
 
+    int count = 0;
     Webcam webcam = null;
     WebSocketClient mWs = null;
-    JLabel labenCapture= null;
+    JLabel labenCapture = null;
 
-    public Camerathread(Webcam webcam, WebSocketClient mWs,JLabel labenCapture) {
+    public Camerathread(Webcam webcam, WebSocketClient mWs, JLabel labenCapture) {
         this.mWs = mWs;
         this.webcam = webcam;
-        this.labenCapture=labenCapture;
+        this.labenCapture = labenCapture;
     }
 
     @Override
@@ -44,7 +45,8 @@ public class Camerathread implements Runnable {
 
     public void sendImage(Webcam webcam, WebSocketClient mWs) {
         try {
-            System.out.println("enviando imagen");
+            count++;
+            System.out.println("enviando imagen ->"+count);
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             ImageIO.write(webcam.getImage(), "png", baos);
             byte[] res = baos.toByteArray();
@@ -56,7 +58,8 @@ public class Camerathread implements Runnable {
         }
 
     }
-     public void mostrarImagenDesktop(byte[] imageData) {
+
+    public void mostrarImagenDesktop(byte[] imageData) {
         ImageIcon icon = new ImageIcon(imageData);
         labenCapture.setIcon(icon);
     }

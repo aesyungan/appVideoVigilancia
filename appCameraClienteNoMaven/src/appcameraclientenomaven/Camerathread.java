@@ -22,11 +22,13 @@ public class Camerathread implements Runnable {
     Webcam webcam = null;
     WebSocketClient mWs = null;
     JLabel labenCapture = null;
+    boolean mostrarImagen = false;
 
-    public Camerathread(Webcam webcam, WebSocketClient mWs, JLabel labenCapture) {
+    public Camerathread(Webcam webcam, WebSocketClient mWs, JLabel labenCapture, boolean mostrarImagen) {
         this.mWs = mWs;
         this.webcam = webcam;
         this.labenCapture = labenCapture;
+        this.mostrarImagen = mostrarImagen;
     }
 
     @Override
@@ -50,7 +52,10 @@ public class Camerathread implements Runnable {
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             ImageIO.write(webcam.getImage(), "png", baos);
             byte[] res = baos.toByteArray();
-            mostrarImagenDesktop(res);
+            if (this.mostrarImagen) {
+                mostrarImagenDesktop(res);
+            }
+
             mWs.send(res);
             //mostrarImagenDesktop(res);
         } catch (Exception e) {

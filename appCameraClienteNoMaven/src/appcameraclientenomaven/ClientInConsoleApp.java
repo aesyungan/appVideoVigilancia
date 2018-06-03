@@ -36,8 +36,8 @@ public class ClientInConsoleApp {
 
     static {
         try {
-            System.setProperty("org.slf4j.simpleLogger.defaultLogLevel", "info");
-            System.setProperty("org.slf4j.simpleLogger.log.com.github.sarxos.webcam.ds.v4l4j", "trace");
+            // System.setProperty("org.slf4j.simpleLogger.defaultLogLevel", "info");
+            // System.setProperty("org.slf4j.simpleLogger.log.com.github.sarxos.webcam.ds.v4l4j", "trace");
             Webcam.setDriver(new V4l4jDriver());
         } catch (Exception e) {
             System.out.println("error ->" + e.getMessage());
@@ -84,7 +84,7 @@ public class ClientInConsoleApp {
             //enviar imagenes de la pc 
             //sendImage("E://img//assasing.png", mWs);
             Webcam webcam = Webcam.getDefault();
-            webcam.setViewSize(new Dimension(160, 120));
+            webcam.setViewSize(new Dimension(176, 144));
             webcam.open();
             boolean ejecutar = true;
 
@@ -109,8 +109,8 @@ public class ClientInConsoleApp {
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             ImageIO.write(image, "png", baos);
             byte[] res = baos.toByteArray();
-            count++;
-            System.out.println("enviando archivo ->" + count);
+            // count++;
+            //System.out.println("enviando archivo ->" + count);
             mWs.send(res);//envia imagen en bytes
             //   Thread.sleep(2500);
             // }
@@ -128,6 +128,8 @@ public class ClientInConsoleApp {
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             ImageIO.write(webcam.getImage(), "png", baos);
             byte[] res = baos.toByteArray();
+            count++;
+            System.out.println("enviando archivo ->" + count);
             mWs.send(res);
         } catch (Exception e) {
             System.out.println("Error AL enviar una imagen->" + e.getMessage());

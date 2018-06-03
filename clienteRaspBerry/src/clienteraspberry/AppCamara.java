@@ -26,8 +26,7 @@ public class AppCamara extends javax.swing.JFrame {
 
     static {
         try {
-            System.setProperty("org.slf4j.simpleLogger.defaultLogLevel", "info");
-            System.setProperty("org.slf4j.simpleLogger.log.com.github.sarxos.webcam.ds.v4l4j", "trace");
+
             Webcam.setDriver(new V4l4jDriver());
         } catch (Exception e) {
             System.out.println("error ->" + e.getMessage());
@@ -198,7 +197,8 @@ public class AppCamara extends javax.swing.JFrame {
             if (isConnectSocket) {
 
                 webcam = Webcam.getDefault();
-                webcam.setViewSize(new Dimension(160, 120));
+                //webcam.setViewSize(new Dimension(160, 120));
+                webcam.setViewSize(new Dimension(176, 144));
                 webcam.open();
                 activo = true;
                 btnIniciar.setEnabled(false);
@@ -217,6 +217,7 @@ public class AppCamara extends javax.swing.JFrame {
 
     private void btnFinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarActionPerformed
         // TODO add your handling code here:
+        System.exit(0);
         activo = false;
 
         mWs.close();

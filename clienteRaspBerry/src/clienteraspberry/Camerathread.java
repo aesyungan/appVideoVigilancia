@@ -35,7 +35,7 @@ public class Camerathread implements Runnable {
     public void run() {
         try {
             while (true) {
-                sendImage(webcam, mWs);
+                sendImage(webcam, mWs, mostrarImagen);
                 Thread.sleep(30);
             }
 
@@ -45,18 +45,37 @@ public class Camerathread implements Runnable {
 
     }
 
-    public void sendImage(Webcam webcam, WebSocketClient mWs) {
+    public void sendImage(Webcam webcam, WebSocketClient mWs, boolean mostrarImagen) {
         try {
             count++;
-            System.out.println("enviando imagen ->" + count);
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            ImageIO.write(webcam.getImage(), "png", baos);
-            byte[] res = baos.toByteArray();
-            if (this.mostrarImagen) {
-                mostrarImagenDesktop(res);
-            }
+            Thread thread = new Thread() {
+                public void run() {
+                    try {
+                        System.out.println("enviando imagen ->" + count);
+                        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                        ImageIO.write(webcam.getImage(), "png", baos);
+                        byte[] res = baos.toByteArray();
+                        if (mostrarImagen) {
+                            Thread thread = new Thread() {
+                                public void run() {
+                                    try {
+                                        mostrarImagenDesktop(res);
+                                    } catch (Exception e) {
+                                    }
 
-            mWs.send(res);
+                                }
+                            };
+                            thread.start();
+                        }
+
+                        mWs.send(res);
+                    } catch (Exception e) {
+                    }
+
+                }
+            };
+            thread.start();
+
             //mostrarImagenDesktop(res);
         } catch (Exception e) {
             System.out.println("Error AL enviar una imagen->" + e.getMessage());

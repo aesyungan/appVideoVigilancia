@@ -50,7 +50,7 @@ public class Camerathread implements Runnable {
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             ImageIO.write(webcam.getImage(), "png", baos);
             byte[] res = baos.toByteArray();
-            mostrarImagenDesktop(res);
+      //      mostrarImagenDesktop(res);
             mWs.send(res);
             //mostrarImagenDesktop(res);
         } catch (Exception e) {

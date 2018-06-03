@@ -5,8 +5,10 @@ $(document).ready(function () {
     var width;
     var height;
     var canvas;
+    var canvasG;
     var images = [];
     var ctx;
+    var ctxG;
     var result;
     var capture;
     var loopnum;
@@ -39,6 +41,7 @@ $(document).ready(function () {
                 var w = img.width;
                 var h = img.height;
                 ctx.drawImage(img, 0, 0, 320, 240);//crea de este tamaño en el canvas
+                ctxG.drawImage(img, 0, 0, 320, 240);//crea de este tamaño en el canvas
             };
             img.src = URL.createObjectURL(msg.data);
         }
@@ -48,7 +51,9 @@ $(document).ready(function () {
         // canvas = document.createElement('canvas');
         //ctx = canvas.getContext('2d');
         canvas = $("#canvas");
+        canvasG = $("#canvas_grav");
         ctx = canvas.get()[0].getContext('2d');
+        ctxG = canvasG.get()[0].getContext('2d');
         result = document.getElementById('result');
         msgdiv = document.getElementById('information');
         progress = document.getElementById('progress');
@@ -75,8 +80,8 @@ $(document).ready(function () {
         if (capturing) {
             var imageData;
             //ctx.drawImage(video, 0, 0, width, height);
-            var ctx2 = ctx;
-            imageData = ctx2.getImageData(0, 0, canvas.width(), canvas.height());
+            var ctx2 = ctxG;
+            imageData = ctx2.getImageData(0, 0, canvasG.width(), canvasG.height());
             images.push({duration: new Date().getTime() - startTime, datas: imageData});
             startTime = new Date().getTime();
             requestAnimationFrame(nextFrame);
@@ -105,8 +110,8 @@ $(document).ready(function () {
      */
     function encodeVideo(capture, currentImage) {
         if (currentImage < images.length) {
-            ctx.putImageData(images[currentImage].datas, 0, 0);
-            capture.add(ctx, images[currentImage].duration);
+            ctxG.putImageData(images[currentImage].datas, 0, 0);
+            capture.add(ctxG, images[currentImage].duration);
             delete images[currentImage];
             progress.value = currentImage;
             currentImage++;
@@ -128,8 +133,8 @@ $(document).ready(function () {
     function initSize() {
         //width = video.clientWidth;
         //height = video.clientHeight;
-        width = canvas.width;
-        height = canvas.height;
+        width = canvasG.width;
+        height = canvasG.height;
         // canvas.width = width;
         // canvas.height = height;
     }

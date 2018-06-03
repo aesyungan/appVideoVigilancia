@@ -8,6 +8,7 @@ package appcameraclientenomaven;
 import com.github.sarxos.webcam.Webcam;
 import com.github.sarxos.webcam.ds.fswebcam.FsWebcamDriver;
 import com.github.sarxos.webcam.ds.v4l4j.V4l4jDriver;
+import java.awt.Dimension;
 import java.io.ByteArrayOutputStream;
 import java.net.URI;
 import javax.imageio.ImageIO;
@@ -187,7 +188,7 @@ public class AppCamara extends javax.swing.JFrame {
             if (isConnectSocket) {
 
                 webcam = Webcam.getDefault();
-
+                webcam.setViewSize(new Dimension(320, 240));
                 webcam.open();
                 activo = true;
                 btnIniciar.setEnabled(false);

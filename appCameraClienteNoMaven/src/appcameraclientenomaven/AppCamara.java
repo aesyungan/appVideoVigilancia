@@ -26,9 +26,9 @@ public class AppCamara extends javax.swing.JFrame {
 
     static {
         try {
-            // System.setProperty("org.slf4j.simpleLogger.defaultLogLevel", "info");
-            // System.setProperty("org.slf4j.simpleLogger.log.com.github.sarxos.webcam.ds.v4l4j", "trace");
-            Webcam.setDriver(new V4l4jDriver());
+            System.setProperty("org.slf4j.simpleLogger.defaultLogLevel", "info");
+            System.setProperty("org.slf4j.simpleLogger.log.com.github.sarxos.webcam.ds.v4l4j", "trace");
+          //  Webcam.setDriver(new V4l4jDriver());
         } catch (Exception e) {
             System.out.println("error ->" + e.getMessage());
         }

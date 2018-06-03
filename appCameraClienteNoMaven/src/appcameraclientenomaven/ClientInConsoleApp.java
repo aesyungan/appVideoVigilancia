@@ -3,9 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.videovigilancia.clientewebsocket;
+package appcameraclientenomaven;
 
 import com.github.sarxos.webcam.Webcam;
+import com.github.sarxos.webcam.ds.v4l4j.V4l4jDriver;
+import java.awt.Dimension;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferByte;
 import java.awt.image.WritableRaster;
@@ -30,8 +32,18 @@ import org.java_websocket.handshake.ServerHandshake;
  *
  * @author Alex
  */
-public class Client {
+public class ClientInConsoleApp {
 
+    static {
+        try {
+            System.setProperty("org.slf4j.simpleLogger.defaultLogLevel", "info");
+            System.setProperty("org.slf4j.simpleLogger.log.com.github.sarxos.webcam.ds.v4l4j", "trace");
+            Webcam.setDriver(new V4l4jDriver());
+        } catch (Exception e) {
+            System.out.println("error ->" + e.getMessage());
+        }
+
+    }
     static int count = 0;
     final static CountDownLatch messageLatch = new CountDownLatch(1);
 
@@ -72,6 +84,7 @@ public class Client {
             //enviar imagenes de la pc 
             //sendImage("E://img//assasing.png", mWs);
             Webcam webcam = Webcam.getDefault();
+            webcam.setViewSize(new Dimension(160, 120));
             webcam.open();
             boolean ejecutar = true;
 

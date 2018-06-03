@@ -24,7 +24,7 @@ $(document).ready(function () {
     // var ctx = canvas.get()[0].getContext('2d');
     //img en video
     //socket que envia datos en este caso imagenes en formato byte[]
-    var ws = new WebSocket("ws://localhost:8080/videovigilancia/livevideo");
+    var ws = new WebSocket("ws://192.168.1.6:8080/videovigilancia/livevideo");
     ws.onmessage = (msg) => {
         //imagen
         //console.log(msg.data);

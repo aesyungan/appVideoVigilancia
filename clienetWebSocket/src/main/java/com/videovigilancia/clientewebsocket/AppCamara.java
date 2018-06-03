@@ -175,6 +175,7 @@ public class AppCamara extends javax.swing.JFrame {
             if (isConnectSocket) {
 
                 webcam = Webcam.getDefault();
+                
                 webcam.open();
                 activo = true;
                 btnIniciar.setEnabled(false);

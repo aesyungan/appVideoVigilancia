@@ -5,17 +5,26 @@
  */
 package clienteraspberry;
 
+import com.github.sarxos.webcam.Webcam;
+import com.github.sarxos.webcam.WebcamPanel;
+import com.github.sarxos.webcam.ds.v4l4j.V4l4jDriver;
+import javax.swing.JFrame;
+
 /**
  *
  * @author Alex
  */
 public class ClienteRaspBerry {
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
+    static {
+        Webcam.setDriver(new V4l4jDriver());
     }
-    
+
+    public static void main(String[] args) {
+        JFrame frame = new JFrame("V4L4J Webcam Capture Driver Demo");
+        frame.add(new WebcamPanel(Webcam.getDefault()));
+        frame.pack();
+        frame.setVisible(true);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
 }

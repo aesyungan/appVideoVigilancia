@@ -43,11 +43,37 @@
             </div>
         </nav>
         <!--end nav bar-->
+        <!-- config -->
+        <div class="btn-group  dropleft float-right config">
+            <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-cog"></i>
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item active" href="#">
+                    <div class="card card-body conten-config">
+                        <div class="alert alert-primary" role="alert">
+                            Host del servidor socket ejemplo: <span class="alert-link">127.0.0.1:8080</span>
+                        </div>
+                        <div class="input-group mb-3">
+                            <input id="hot-socket" type="text" class="form-control" placeholder="IP socket server" aria-label="Recipient's username" aria-describedby="basic-addon2" value="127.0.0.1:8080"></input>
+                            <div class="input-group-append">
+                                <button id="btn-conectar" class="btn  btn-primary" type="button">Connectar</button>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+            </div>
+        </div>
+
+        <!--end config -->
         <!--app video stream-->
         <div class="card">
             <h5 class="card-header"><i class="fas fa-video"></i> Camara N1</h5>
             <div class="card-body">
+
                 <div class="row">
+
                     <div class="card">
                         <h5 class="card-header"><i class="fas fa-stream"></i>Live  N1</h5>
                         <div class="card-body">
@@ -86,12 +112,12 @@
                     </div>
                     <div class="modal-body">
                         <div class="center-content">
-                             <i class="fas fa-video fa-2x"></i>
-                             <br></br>
-                             <h4>Videovigilancia</h4>
+                            <i class="fas fa-video fa-2x"></i>
+                            <br></br>
+                            <h4>Videovigilancia</h4>
                         </div>
-                        
-                         
+
+
                         <span><strong>Creado Por:</strong></span>
                         <br></br>
                         <span><strong>Versión:</strong> v1.0.0</span>
@@ -100,7 +126,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Ok</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Ok</button>
                     </div>
                 </div>
             </div>

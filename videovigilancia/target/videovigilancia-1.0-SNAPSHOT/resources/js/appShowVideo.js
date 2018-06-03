@@ -16,30 +16,33 @@ $(document).ready(function () {
     var progress;
     var startButton;
     var stopButton;
+    var ws = null;
     init();
+
     //end inicializar variables
     // var video = $("#video").get()[0];
     // console.log(video);
     // var canvas = $("#canvas");
     // var ctx = canvas.get()[0].getContext('2d');
     //img en video
-    //socket que envia datos en este caso imagenes en formato byte[]
-    var ws = new WebSocket("ws://192.168.1.6:8080/videovigilancia/livevideo");
-    ws.onmessage = (msg) => {
-        //imagen
-        //console.log(msg.data);
-        var img = new Image();
-
-        img.onload = function () {
-            var w = img.width;
-            var h = img.height;
-            ctx.drawImage(img, 0, 0,320,240);//crea de este tamaño en el canvas
-        };
-        img.src = URL.createObjectURL(msg.data);
-
-    }
-
     //funciones
+    function connectarServer() {
+        var host = $('#hot-socket').val();
+        console.log("connecting to +>" + host);
+        ws = new WebSocket("ws://" + host + "/videovigilancia/livevideo");
+        ws.onmessage = (msg) => {
+            //imagen
+            //console.log(msg.data);
+            var img = new Image();
+
+            img.onload = function () {
+                var w = img.width;
+                var h = img.height;
+                ctx.drawImage(img, 0, 0, 320, 240);//crea de este tamaño en el canvas
+            };
+            img.src = URL.createObjectURL(msg.data);
+        }
+    }
     function init() {
         // video = document.getElementById('campreview');
         // canvas = document.createElement('canvas');
@@ -51,15 +54,20 @@ $(document).ready(function () {
         progress = document.getElementById('progress');
         startButton = document.getElementById('btnStartButton');
         stopButton = document.getElementById('btnStopButton');
+        connectarServer();
     }
     //butones
     $("#btnStartButton").click(function () {
         startCapture();
     });
+
     $("#btnStopButton").click(function () {
         stopCapture();
     });
+    $("#btn-conectar").click(function () {
 
+        connectarServer();
+    });
     /**
      * Capture the next frame of the video.
      */
@@ -67,7 +75,7 @@ $(document).ready(function () {
         if (capturing) {
             var imageData;
             //ctx.drawImage(video, 0, 0, width, height);
-            var ctx2=ctx;
+            var ctx2 = ctx;
             imageData = ctx2.getImageData(0, 0, canvas.width(), canvas.height());
             images.push({duration: new Date().getTime() - startTime, datas: imageData});
             startTime = new Date().getTime();

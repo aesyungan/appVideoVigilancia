@@ -217,7 +217,7 @@ public class AppCamara extends javax.swing.JFrame {
 
     private void btnFinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarActionPerformed
         // TODO add your handling code here:
-        System.exit(0);
+ //       System.exit(0);
         activo = false;
 
         mWs.close();

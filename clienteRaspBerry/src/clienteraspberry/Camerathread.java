@@ -48,33 +48,18 @@ public class Camerathread implements Runnable {
     public void sendImage(Webcam webcam, WebSocketClient mWs, boolean mostrarImagen) {
         try {
             count++;
-            Thread thread = new Thread() {
-                public void run() {
-                    try {
-                        System.out.println("enviando imagen ->" + count);
-                        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                        ImageIO.write(webcam.getImage(), "png", baos);
-                        byte[] res = baos.toByteArray();
-                        if (mostrarImagen) {
-                            Thread thread = new Thread() {
-                                public void run() {
-                                    try {
-                                        mostrarImagenDesktop(res);
-                                    } catch (Exception e) {
-                                    }
 
-                                }
-                            };
-                            thread.start();
-                        }
+            System.out.println("enviando imagen ->" + count);
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            ImageIO.write(webcam.getImage(), "png", baos);
+            byte[] res = baos.toByteArray();
+            if (mostrarImagen) {
 
-                        mWs.send(res);
-                    } catch (Exception e) {
-                    }
+                mostrarImagenDesktop(res);
 
-                }
-            };
-            thread.start();
+            }
+
+            mWs.send(res);
 
             //mostrarImagenDesktop(res);
         } catch (Exception e) {

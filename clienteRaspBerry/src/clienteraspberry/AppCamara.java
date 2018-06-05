@@ -197,8 +197,8 @@ public class AppCamara extends javax.swing.JFrame {
             if (isConnectSocket) {
 
                 webcam = Webcam.getDefault();
-                //webcam.setViewSize(new Dimension(160, 120));
-                webcam.setViewSize(new Dimension(176, 144));
+                webcam.setViewSize(new Dimension(160, 120));
+                //webcam.setViewSize(new Dimension(176, 144));
                 webcam.open();
                 activo = true;
                 btnIniciar.setEnabled(false);

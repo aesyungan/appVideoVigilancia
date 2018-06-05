@@ -38,15 +38,14 @@ public class ClienteTest {
     private static final MediaListItem dev2 = new MediaListItem("Logitech Webcam", "dshow://", EMPTY);
 
     static {
-       Webcam.setDriver(new JmfDriver());
+        Webcam.setDriver(new JmfDriver());
     }
 
     public static void main(String[] args) {
-        JFrame window = new JFrame("Webcam Panel");
-        window.add(new WebcamPanel(Webcam.getDefault()));
-        window.setResizable(false);
-        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        window.pack();
-        window.setVisible(true);
+        JFrame frame = new JFrame("JMF Webcam Capture Driver Demo");
+        frame.add(new WebcamPanel(Webcam.getDefault()));
+        frame.pack();
+        frame.setVisible(true);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 }

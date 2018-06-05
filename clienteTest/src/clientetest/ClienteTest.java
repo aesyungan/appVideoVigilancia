@@ -7,6 +7,7 @@ package clientetest;
 
 import com.github.sarxos.webcam.Webcam;
 import com.github.sarxos.webcam.WebcamPanel;
+import com.github.sarxos.webcam.ds.gstreamer.GStreamerDriver;
 import com.github.sarxos.webcam.ds.vlcj.VlcjDriver;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
@@ -34,9 +35,10 @@ public class ClienteTest {
     private static final MediaListItem dev0 = new MediaListItem("HP HD Webcam [Fixed]", "dshow://", EMPTY);
     private static final MediaListItem dev1 = new MediaListItem("USB2.0 Camera", "dshow://", EMPTY);
     private static final MediaListItem dev2 = new MediaListItem("Logitech Webcam", "dshow://", EMPTY);
-
+//https://svn.code.sf.net/p/mjpg-streamer/code/ mjpg-streamer-code
     static {
-        Webcam.setDriver(new VlcjDriver(Arrays.asList(dev0, dev1, dev2)));
+      //  Webcam.setDriver(new VlcjDriver(Arrays.asList(dev0, dev1, dev2)));
+        Webcam.setDriver(new GStreamerDriver());
     }
 
     public static void main(String[] args) {

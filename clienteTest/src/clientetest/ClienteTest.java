@@ -8,6 +8,7 @@ package clientetest;
 import com.github.sarxos.webcam.Webcam;
 import com.github.sarxos.webcam.WebcamPanel;
 import com.github.sarxos.webcam.ds.civil.LtiCivilDriver;
+import com.github.sarxos.webcam.ds.jmf.JmfDriver;
 import com.github.sarxos.webcam.ds.vlcj.VlcjDriver;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
@@ -37,7 +38,7 @@ public class ClienteTest {
     private static final MediaListItem dev2 = new MediaListItem("Logitech Webcam", "dshow://", EMPTY);
 
     static {
-       Webcam.setDriver(new LtiCivilDriver());
+       Webcam.setDriver(new JmfDriver());
     }
 
     public static void main(String[] args) {

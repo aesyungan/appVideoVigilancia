@@ -7,7 +7,6 @@ package clientetest;
 
 import com.github.sarxos.webcam.Webcam;
 import com.github.sarxos.webcam.WebcamPanel;
-import com.github.sarxos.webcam.ds.fswebcam.FsWebcamDriver;
 import com.github.sarxos.webcam.ds.vlcj.VlcjDriver;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
@@ -32,12 +31,12 @@ public class ClienteTest {
      * to manually provide the list of media list items from vlcj. This
      * is not necessary on Linux and Mac.
      */
-    //private static final MediaListItem dev0 = new MediaListItem("HP HD Webcam [Fixed]", "dshow://", EMPTY);
-   // private static final MediaListItem dev1 = new MediaListItem("USB2.0 Camera", "dshow://", EMPTY);
-    //private static final MediaListItem dev2 = new MediaListItem("Logitech Webcam", "dshow://", EMPTY);
+    private static final MediaListItem dev0 = new MediaListItem("HP HD Webcam [Fixed]", "dshow://", EMPTY);
+    private static final MediaListItem dev1 = new MediaListItem("USB2.0 Camera", "dshow://", EMPTY);
+    private static final MediaListItem dev2 = new MediaListItem("Logitech Webcam", "dshow://", EMPTY);
 
     static {
-        Webcam.setDriver(new FsWebcamDriver());
+        Webcam.setDriver(new VlcjDriver(Arrays.asList(dev0, dev1, dev2)));
     }
 
     public static void main(String[] args) {

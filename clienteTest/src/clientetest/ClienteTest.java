@@ -10,6 +10,7 @@ import com.github.sarxos.webcam.WebcamPanel;
 import com.github.sarxos.webcam.WebcamResolution;
 import com.github.sarxos.webcam.ds.civil.LtiCivilDriver;
 import com.github.sarxos.webcam.ds.jmf.JmfDriver;
+import com.github.sarxos.webcam.ds.v4l4j.V4l4jDriver;
 import com.github.sarxos.webcam.ds.vlcj.VlcjDriver;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
@@ -35,7 +36,7 @@ public class ClienteTest {
      * is not necessary on Linux and Mac.
      */
     static {
-        Webcam.setDriver(new VlcjDriver());
+        Webcam.setDriver(new V4l4jDriver());
     }
 
     public static void main(String[] args) throws InterruptedException {
